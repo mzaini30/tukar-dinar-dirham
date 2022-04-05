@@ -1,8 +1,8 @@
 <?php ob_start() ?>
-	<div class="mb-4">
+	<!-- <div class="mb-4">
 		<a href="https://play.google.com/store/apps/details?id=com.mzaini30.tukardinardirham" class="button">review app</a>
 		<a href="https://www.nihbuatjajan.com/mzaini30" class="button">donate</a>
-	</div>
+	</div> -->
 	<div class="app" v-cloak @vue:mounted='cek'>
 		<div class="tabs is-boxed">
 		  <ul>
