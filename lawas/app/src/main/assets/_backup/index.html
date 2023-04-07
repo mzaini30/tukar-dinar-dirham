@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Tukar Dinar Dirham</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<style type="text/css">
+		body { padding-top: 70px; }
+
+		.sembunyi {
+			display: none;
+		}
+
+		.alert {
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+	  <div class="container-fluid">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand judul-aplikasi" href="#!">Tukar Dinar Dirham</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li><a href="https://play.google.com/store/apps/dev?id=5401138465689796048">Other Apps</a></li>
+	        <li><a href="https://play.google.com/store/apps/details?id=com.mzaini30.tukardinardirham">Review App</a></li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
+	<div class="container">
+		<div class="alert alert-warning sembunyi" role="alert">First set the dinar dirham value</div>
+		<ul class="nav nav-tabs">
+		  <li role="presentation" class="menu" data-target='beranda'><a href="#!">Home</a></li>
+		  <li role="presentation" class="menu" data-target='atur'><a href="#!">Set</a></li>
+		  <li role="presentation"><a href="https://wakalaindukbintan.com">Check</a></li>
+		</ul>
+		<br>
+		<div class="isi-tabs">
+			<div data-rumah='beranda' class="sembunyi isi-tabs-item">
+				<div class="form-group">
+					<label for="">Exchange to Dinar Dirham</label>
+					<div class="input-group">
+					  <input type="tel" class="form-control input-dinar-dirham" aria-describedby="basic-addon1">
+					  <span class="input-group-addon" id="basic-addon1">rupiah</span>
+					</div>
+				</div>
+				<div class="panel panel-default">
+				  <div class="panel-heading">To Dinar Dirham</div>
+				  <div class="panel-body">
+				  	<p class="ke-dinar-dirham"></p>
+				  </div>
+				</div>
+				<div class="panel panel-default">
+				  <div class="panel-heading">To Dinar Only</div>
+				  <div class="panel-body">
+				  	<p class="ke-dinar-saja"></p>
+				  </div>
+				</div>
+				<div class="panel panel-default">
+				  <div class="panel-heading">To Dirham Only</div>
+				  <div class="panel-body">
+				  	<p class="ke-dirham-saja"></p>
+				  </div>
+				</div>
+			</div>
+			<div data-rumah='atur' class="sembunyi isi-tabs-item">
+				<div class="form-group">
+					<label for="">Value of 1 Dinar</label>
+					<div class="input-group">
+					  <input type="tel" class="form-control nilai-dinar atur-nilai" aria-describedby="basic-addon1">
+					  <span class="input-group-addon" id="basic-addon1">rupiah</span>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="">Value of 1 Dirham</label>
+					<div class="input-group">
+					  <input type="tel" class="form-control nilai-dirham atur-nilai" aria-describedby="basic-addon1">
+					  <span class="input-group-addon" id="basic-addon1">rupiah</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		if (localStorage.getItem('nilai dinar')) {
+			$('.nilai-dinar').val(localStorage.getItem('nilai dinar'))
+		}
+		if (localStorage.getItem('nilai dirham')) {
+			$('.nilai-dirham').val(localStorage.getItem('nilai dirham'))
+		}
+		$('.nilai-dinar').on('keyup', function(){
+			localStorage.setItem('nilai dinar', $('.nilai-dinar').val())
+		})
+		$('.nilai-dirham').on('keyup', function(){
+			localStorage.setItem('nilai dirham', $('.nilai-dirham').val())
+		})
+
+		$('.navbar-nav a').click(function(){
+			$('.navbar-toggle').click()
+		})
+
+		nilai_diatur_kah = function(){
+			if (localStorage.getItem('nilai dinar') == '' || localStorage.getItem('nilai dirham') == '' || localStorage.getItem('nilai dinar') == null || localStorage.getItem('nilai dirham') == null){
+				$('.alert').removeClass('sembunyi')
+			} else {
+				$('.alert').addClass('sembunyi')
+			}
+		}
+		nilai_diatur_kah()
+		$('.atur-nilai').on('keyup', function(){
+			nilai_diatur_kah()
+		})
+
+		$('.menu').click(function(){
+			$('.menu').removeClass('active');
+			$('.isi-tabs-item').addClass('sembunyi');
+			$(this).addClass('active');
+			$('[data-rumah="' + $(this).attr('data-target') + '"]').removeClass('sembunyi');
+		});
+		$('.menu:first').click();
+		$('.alert').click(function(){
+			$('.menu:nth-child(2)').click();
+		})
+
+		$('.judul-aplikasi').click(function(x){
+			x.preventDefault();
+			$('html, body').animate({
+				scrollTop: 0
+			}, 600);
+		});
+
+		$('.input-dinar-dirham').on('keyup', function(){
+			ke_dinar = Math.floor($('.input-dinar-dirham').val() / localStorage.getItem('nilai dinar'))
+			ke_dinar_sisa = $('.input-dinar-dirham').val() - ke_dinar * localStorage.getItem('nilai dinar')
+			$('.ke-dinar-saja').html(ke_dinar + ' dinar<br>' + ke_dinar_sisa.toLocaleString('en-US') + ' rupiah')
+
+			ke_dirham = Math.floor($('.input-dinar-dirham').val() / localStorage.getItem('nilai dirham'))
+			ke_dirham_sisa = $('.input-dinar-dirham').val() - ke_dirham * localStorage.getItem('nilai dirham')
+			$('.ke-dirham-saja').html(ke_dirham + ' dirham<br>' + ke_dirham_sisa.toLocaleString('en-US') + ' rupiah')
+
+			ke_dirham_2 = Math.floor(($('.input-dinar-dirham').val() - ke_dinar * localStorage.getItem('nilai dinar')) / localStorage.getItem('nilai dirham'))
+			ke_dinar_dirham_sisa = $('.input-dinar-dirham').val() - ke_dinar * localStorage.getItem('nilai dinar') - ke_dirham_2 * localStorage.getItem('nilai dirham')
+			$('.ke-dinar-dirham').html(ke_dinar + ' dinar<br>' + ke_dirham_2 + ' dirham<br>' + ke_dinar_dirham_sisa.toLocaleString('en-US') + ' rupiah')
+		})
+	</script>
+</body>
+</html>

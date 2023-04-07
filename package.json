@@ -1,0 +1,6 @@
+{
+	"dependencies": {
+		"andro": "^2.2.9",
+		"degit": "^2.8.4"
+	}
+}

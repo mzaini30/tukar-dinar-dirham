@@ -1,0 +1,22 @@
+lockfileVersion: 5.4
+
+specifiers:
+  andro: ^2.2.9
+  degit: ^2.8.4
+
+dependencies:
+  andro: 2.2.9
+  degit: 2.8.4
+
+packages:
+
+  /andro/2.2.9:
+    resolution: {integrity: sha512-Izy70IzwCihqzXUirybDC2KPpq/rGNC/TECuFSWotRfqXfSiXgaQvOAM6XS7R4G+GWtZPWUzMXpeWR4l6ixpeg==}
+    hasBin: true
+    dev: false
+
+  /degit/2.8.4:
+    resolution: {integrity: sha512-vqYuzmSA5I50J882jd+AbAhQtgK6bdKUJIex1JNfEUPENCgYsxugzKVZlFyMwV4i06MmnV47/Iqi5Io86zf3Ng==}
+    engines: {node: '>=8.0.0'}
+    hasBin: true
+    dev: false
